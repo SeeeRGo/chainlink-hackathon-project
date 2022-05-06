@@ -1,6 +1,24 @@
+import { calculateVotesToAdd } from "../src/utils/calculateVotesToAdd";
+import { delegationGraph } from "./fixtures/delegationGraph";
+import { firstUserVotesForOptionTwo, secondUserVotesForOptionThree } from "./fixtures/votingState";
+
 describe("Vote info calculated from dependency graph", () => {
-  test.todo('should calculate votes from dependency graph')
-  test.todo('should calculate votes from dependency graph if followers array is empty')
+  test('should calculate votes from dependency graph', () => {
+    const actual = calculateVotesToAdd(delegationGraph, 2, 1)
+
+    const expected = firstUserVotesForOptionTwo
+
+    expect(actual).toEqual(expected)
+  })
+  test('should calculate votes from dependency graph if followers array is empty', () => {
+    const actual = calculateVotesToAdd(delegationGraph, 2, 3)
+
+    const expected = secondUserVotesForOptionThree
+
+    expect(actual).toEqual(expected)
+
+  })
+  test.todo('should calculate correct amount for delegated votes, based on delegates already voted for follower')
 });
 
 describe("Vote events", () => {

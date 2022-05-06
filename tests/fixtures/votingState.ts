@@ -1,12 +1,11 @@
 import {
-  Governor,
   OptionId,
   VotingState,
   Vote,
-} from "../../playground/logic-examples";
+} from "../../src/types/votingState";
 
 // 3 Options
-const initialState: VotingState = {
+export const initialState: VotingState = {
   delegatesVoted: {},
   1: {
     amounts: {},
@@ -20,7 +19,7 @@ const initialState: VotingState = {
 };
 
 // TODO test votes array creation from just voterId according to initial delegationGraph
-const firstUserVotesForOptionTwo: { optionId: OptionId; votes: Vote[] } = {
+export const firstUserVotesForOptionTwo: { optionId: OptionId; votes: Vote[] } = {
   optionId: 2,
   votes: [
     { fromId: 1, amount: 1, type: "OWN" },
@@ -30,7 +29,7 @@ const firstUserVotesForOptionTwo: { optionId: OptionId; votes: Vote[] } = {
 };
 // State after firstUserVotesForOptionTwo
 
-const stateAfterStepOne: VotingState = {
+export const stateAfterStepOne: VotingState = {
   1: {
     amounts: {},
   },
@@ -51,10 +50,10 @@ const stateAfterStepOne: VotingState = {
   },
 };
 
-const winnerOptionAfterStepOne = "winner is option #2 with 3 total votes";
+export const winnerOptionAfterStepOne = "winner is option #2 with 3 total votes";
 
 // Step 2 third user votes for option 1
-const thirdUserVotesForOptionOne: { optionId: OptionId; votes: Vote[] } = {
+export const thirdUserVotesForOptionOne: { optionId: OptionId; votes: Vote[] } = {
   optionId: 1,
   votes: [
     { fromId: 3, amount: 1, type: "OWN" },
@@ -63,7 +62,7 @@ const thirdUserVotesForOptionOne: { optionId: OptionId; votes: Vote[] } = {
   ],
 };
 
-const stateAfterStepTwo: VotingState = {
+export const stateAfterStepTwo: VotingState = {
   1: {
     amounts: {
       2: 0.5,
@@ -89,15 +88,15 @@ const stateAfterStepTwo: VotingState = {
   },
 };
 
-const winnerOptionAfterStepTwo = "winner is option #1 with 2.5 total votes";
+export const winnerOptionAfterStepTwo = "winner is option #1 with 2.5 total votes";
 
 // Step 3 second user votes for option 3
-const secondUserVotesForOptionThree: { optionId: OptionId; votes: Vote[] } = {
+export const secondUserVotesForOptionThree: { optionId: OptionId; votes: Vote[] } = {
   optionId: 3,
   votes: [{ fromId: 2, amount: 1, type: "OWN" }],
 };
 
-const stateAfterStepThree: VotingState = {
+export const stateAfterStepThree: VotingState = {
   1: {
     amounts: {
       2: 0,
@@ -125,10 +124,10 @@ const stateAfterStepThree: VotingState = {
   },
 };
 
-const winnerOptionAfterStepThree = "winner is option #1 with 2 total votes";
+export const winnerOptionAfterStepThree = "winner is option #1 with 2 total votes";
 
 // Step 4 fourth user votes for option 3
-const fourthUserVotesForOptionThree: { optionId: OptionId; votes: Vote[] } = {
+export const fourthUserVotesForOptionThree: { optionId: OptionId; votes: Vote[] } = {
   optionId: 3,
   votes: [
     { fromId: 4, amount: 1, type: "OWN" },
@@ -136,7 +135,7 @@ const fourthUserVotesForOptionThree: { optionId: OptionId; votes: Vote[] } = {
   ],
 };
 
-const stateAfterStepFour: VotingState = {
+export const stateAfterStepFour: VotingState = {
   1: {
     amounts: {
       2: 0,
@@ -164,15 +163,15 @@ const stateAfterStepFour: VotingState = {
     4: "CASTED",
   },
 };
-const winnerOptionAfterStepFour = "winner is option #3 with 2 total votes";
+export const winnerOptionAfterStepFour = "winner is option #3 with 2 total votes";
 
-// Step 5 second user retracts his vote 
-const secondUserRetractsVote = {
+// Step 5 second user retracts his vote
+export const secondUserRetractsVote = {
   fromId: 2,
 }
 
 
-const stateAfterStepFive: VotingState = {
+export const stateAfterStepFive: VotingState = {
   1: {
     amounts: {
       2: 0.33,
@@ -201,14 +200,14 @@ const stateAfterStepFive: VotingState = {
   },
 };
 
-const winnerOptionAfterStepFive = "there is a tie among several options with 1.33 total votes";
+export const winnerOptionAfterStepFive = "there is a tie among several options with 1.33 total votes";
 
-// Step 6 fourth user retracts his vote 
-const fourthUserRetractsVote = {
+// Step 6 fourth user retracts his vote
+export const fourthUserRetractsVote = {
   fromId: 4,
 }
 
-const stateAfterStepSix: VotingState = {
+export const stateAfterStepSix: VotingState = {
   1: {
     amounts: {
       2: 0.5,
@@ -235,4 +234,4 @@ const stateAfterStepSix: VotingState = {
   },
 };
 
-const winnerOptionAfterStepSix = "winner is option #1 with 2.5 total votes";
+export const winnerOptionAfterStepSix = "winner is option #1 with 2.5 total votes";

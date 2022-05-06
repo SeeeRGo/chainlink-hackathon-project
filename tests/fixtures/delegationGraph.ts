@@ -1,6 +1,5 @@
-import { Governor } from "../../playground/logic-examples";
+import { DelegationGraph } from "../../src/types/delegationGraph";
 
-type DelegationGraph = Record<Governor["id"], Governor>;
 export const delegationGraph: DelegationGraph = {
   1: {
     id: 1,
@@ -27,11 +26,13 @@ export const delegationGraph: DelegationGraph = {
 export const delegationGraphAfterAddingDelegate: DelegationGraph = {
   ...delegationGraph,
   1: {
-    ...delegationGraph.1,
+    id: 1,
+    followers: [2, 3],
     delegates: [4]
   },
   4: {
-    ...delegationGraph.4,
+    id: 4,
+    delegates: [3],
     followers: [2, 1]
   }
 };
@@ -41,11 +42,13 @@ export const delegationGraphAfterAddingFollower = delegationGraphAfterAddingDele
 export const delegationGraphAfterRemovingDelegate: DelegationGraph = {
   ...delegationGraph,
   2: {
-    ...delegationGraph.2,
+    id: 2,
+    followers: [],
     delegates: [1, 4]
   },
   3: {
-    ...delegationGraph.3,
+    id: 3,
+    delegates: [1],
     followers: [4]
   }
 };
