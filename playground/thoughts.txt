@@ -1,0 +1,36 @@
+Изначально два контракта - по опциям на определение победителя и маппинг делегирования
+Основной кипишь через приложение и хранение и подсчёт состояния маппинга голосов
+
+Делегирование только распространяется только на первый уровень (делегат твоего делегата не твой делегат)
+
+Версии логов сохранять а состояние перезаписывать
+
+Если человек забирает свой голос то мне надо перекастовать его голос по частям исходя из списка его делегатов
+
+We need to keep track of currently voted delegates numbers for every user
+Should use sorting to make tests pass at first
+
+Event types low-level
+  Register follower
+  UnRegister Follower
+  Register Delegate
+  UnRegister Delegate
+  Cast Vote power Amount for option for user
+  Retract Vote power Amount for option for user
+  Count total Voting power for option
+
+Composite event description
+Add delegate vote
+  Get number of delegates for user from state
+  Increase number of votes delegates for user by 1
+  Calculate proportional decrease of previously cast votes (if there were 7 votes, voting power per options should be adjusted by multiplying them by ⅞)
+  Add proportional amount of voting power to appropriate option (⅛ for 8th delegate)
+
+Remove delegate vote
+  Get number of delegates for user from state
+  Decrease number of votes delegates for user by 1
+  Remove proportional amount of voting power from appropriate option (1/7 for previously 7th delegate)
+  Calculate proportional increase of previously cast votes (if there were 7 votes, voting power per options should be adjusted by multiplying them by 7/6)
+
+Change Vote option
+  Retract op

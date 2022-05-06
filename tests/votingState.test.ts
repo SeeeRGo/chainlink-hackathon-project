@@ -1,0 +1,40 @@
+describe("Vote info calculated from dependency graph", () => {
+  test.todo('should calculate votes from dependency graph')
+  test.todo('should calculate votes from dependency graph if followers array is empty')
+});
+
+describe("Vote events", () => {
+  describe("addVote", () => {
+    test.todo('should change delegates voted field for id to "CASTED"');
+    test.todo(
+      "should increase delegates voted field for ALL undecided followers to by 1"
+    );
+    test.todo("should not affect followers who already voted");
+    test.todo("should set amount for option voted to 1 for given voter");
+    test.todo(
+      "should recalculate amounts for options voted by other delegates for given follower"
+    );
+    test.todo('should set amounts for options voted by delegates to 0')
+  });
+
+  describe("retractVote", () => {
+    test.todo(
+      'should change delegatesVoted from "CASTED" to number of delegates voted'
+    );
+    test.todo("should not affect followers who already voted");
+    test.todo(
+      "should decrease delegatesVoted by 1 for all undecided followers"
+    );
+    test.todo(
+      "should recalculate amounts for options voted by other delegates for given follower"
+    );
+    test.todo('should throw if attempts with id not in the voting state')
+  });
+
+  test.todo(
+    "adding vote to empty state and retracitng it should revert to empty state equivalent"
+  );
+  test.todo(
+    "total amount of votes should be a whole number equal to a number non-empty keys in delegatesVoted"
+  );
+});
