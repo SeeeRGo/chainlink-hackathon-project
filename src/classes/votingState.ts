@@ -2,9 +2,8 @@ import range from "just-range";
 
 import { State } from "../types/votingState";
 
-
-class VotingState implements State {
-  private data: State["data"];
+export class VotingState implements State {
+  data: State["data"];
 
   static createEmpty(numOptions: number) {
     const data: State["data"] = {
@@ -15,10 +14,15 @@ class VotingState implements State {
       data[optionId] = { amounts: {} };
     });
 
-    return new VotingState(data)
+    return new VotingState(data);
   }
 
   constructor(data: State["data"]) {
     this.data = data;
   }
+
+  addVote(fromId: number, optionId: number, amount: number): State['data'] {
+    console.log(fromId, optionId, amount)
+    return this.data
+  };
 }
