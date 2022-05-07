@@ -1,6 +1,6 @@
 import { calculateVotesToAdd } from "../src/utils/calculateVotesToAdd";
-import { delegationGraph } from "./fixtures/delegationGraph";
-import { firstUserVotesForOptionTwo, secondUserVotesForOptionThree } from "./fixtures/votingState";
+import { delegationGraph } from "./fixtures/delegationGraph.fixtures";
+import { firstUserVotesForOptionTwo, secondUserVotesForOptionThree } from "./fixtures/votingState.fixtures";
 
 describe("Vote info calculated from dependency graph", () => {
   test('should calculate votes from dependency graph', () => {
@@ -18,7 +18,9 @@ describe("Vote info calculated from dependency graph", () => {
     expect(actual).toEqual(expected)
 
   })
-  test.todo('should calculate correct amount for delegated votes, based on delegates already voted for follower')
+  // test('should calculate correct amount for delegated votes, based on delegates already voted for follower', () => {
+
+  // })
 });
 
 describe("Vote events", () => {

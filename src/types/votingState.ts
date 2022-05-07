@@ -29,11 +29,9 @@ export type StateData = {
 };
 // really need class for this (pun intended)
 type StateBehavior = {
-  voidVote: (fromId: Governor['id']) => StateData;
-  decreaseVotePartial: (fromId: Governor['id'], optionId: OptionId, amount: number) => StateData;
   addVote: (fromId: Governor['id'], optionId: OptionId, amount: number) => StateData; // include sanity checks for total voting power
 }
 
 export type State = StateBehavior & {
-  data: StateData;
-}
+  data: VotingState;
+};
