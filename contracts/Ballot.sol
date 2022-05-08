@@ -55,11 +55,11 @@ contract Ballot {
 
     /// Give your vote (including votes delegated to you)
     /// to proposal `proposals[proposal].name`.
-    function vote(uint proposal) external {
+    function vote(uint proposal) external payable {
       // If `proposal` is out of the range of the array,
       // this will throw automatically and revert all
       // changes.
-      require(proposal < proposals.length - 1);
+      require(proposal !=0 && proposal <= proposals.length - 1);
 
       bool existingVoter = checkExistingVoter(msg.sender);
       uint previousVote = votes[msg.sender];

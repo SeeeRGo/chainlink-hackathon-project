@@ -32,7 +32,8 @@
 import React from 'react'
 import { VotingBooth } from './components/VotingBooth'
 
-export const App = () => {
+export const App = () => { 
+  console.log("process.env.NODE_ENV", process.env['NODE_ENV']);
   return (
     <VotingBooth />
   )

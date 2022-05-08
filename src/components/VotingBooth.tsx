@@ -3,11 +3,31 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
+import { useWeb3React } from "@web3-react/core";
+import { InjectedConnector } from "@web3-react/injected-connector";
+
+const Injected = new InjectedConnector({
+  supportedChainIds: [1, 3, 4, 5, 42],
+});
 
 export const VotingBooth = () => {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<number | null>(null);
+  const { activate, deactivate, active, chainId, account } = useWeb3React();
+
+
   return (
     <>
+      <button
+        onClick={() => {
+          activate(Injected);
+        }}
+      >
+        Metamask
+      </button>
+      <button onClick={deactivate}>Disconnect</button>
+      <div>{`Connection Status: ${active}`}</div>
+      <div>{`Account: ${account}`}</div>
+      <div>{`Network ID: ${chainId}`}</div>
       <FormGroup>
         <FormControlLabel
           control={
