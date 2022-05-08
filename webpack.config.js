@@ -65,6 +65,9 @@ module.exports = {
       crypto: false,
       assert: false,
       stream: false,
+      os: require.resolve("os-browserify/browser"),
+      https: require.resolve("https-browserify"),
+      http: require.resolve("stream-http"),
     },
   },
 };

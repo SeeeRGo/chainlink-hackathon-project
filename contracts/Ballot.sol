@@ -9,7 +9,7 @@ contract Ballot {
 
     // This is a type for a single proposal.
     struct Proposal {
-        bytes32 name;   // short name (up to 32 bytes)
+        string name;   // short name (up to 32 bytes)
     }
 
     // A dynamically-sized array of `Proposal` structs.
@@ -24,7 +24,7 @@ contract Ballot {
 
     address[] remainingVotersTemp;
     /// Create a new ballot to choose one of `proposalNames`.
-    constructor(bytes32[] memory proposalNames) {
+    constructor(string[] memory proposalNames) {
       // For each of the provided proposal names,
       // create a new proposal object and add it
       // to the end of the array.

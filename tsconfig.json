@@ -15,7 +15,8 @@
     "lib": ["dom", "esnext"],
     "strict": true,
     "sourceMap": true,
-    "target": "esnext"
+    "target": "esnext",
+    "resolveJsonModule": true
   },
   "exclude": ["playground/**/*"]
 }
