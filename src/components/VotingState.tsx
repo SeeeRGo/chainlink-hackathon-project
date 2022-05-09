@@ -12,7 +12,6 @@ export const VotingState = () => {
     const res = await client.get(cid);
     if (!res) return
     const files = await res.files()
-    console.log('response files', files);
 
     const fr = new FileReader();
 

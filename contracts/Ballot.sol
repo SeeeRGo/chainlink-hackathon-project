@@ -13,7 +13,7 @@ contract Ballot {
     }
 
     // A dynamically-sized array of `Proposal` structs.
-    Proposal[] public proposals;
+    Proposal[] proposals;
 
     mapping(address => uint) public votes;
     //This will be used to iterate over votes to determine a winner
@@ -96,12 +96,7 @@ contract Ballot {
       return (proposals[proposal], votersPerOption[proposal]);
     }
 
-    // Calls winningProposal() function to get the index
-    // of the winner contained in the proposals array and then
-    // returns the name of the winner
-    // function winnerName() external view
-    //         returns (bytes32 winnerName_)
-    // {
-    //     winnerName_ = proposals[winningProposal()].name;
-    // }
+    function getProposals() public view returns (Proposal[] memory) {
+      return proposals;
+    }
 }

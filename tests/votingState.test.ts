@@ -4,14 +4,22 @@ import { firstUserVotesForOptionTwo, secondUserVotesForOptionThree } from "./fix
 
 describe("Vote info calculated from dependency graph", () => {
   test('should calculate votes from dependency graph', () => {
-    const actual = calculateVotesToAdd(delegationGraph, 2, 1)
+    const actual = calculateVotesToAdd(
+      delegationGraph,
+      "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+      1
+    );
 
     const expected = firstUserVotesForOptionTwo
 
     expect(actual).toEqual(expected)
   })
   test('should calculate votes from dependency graph if followers array is empty', () => {
-    const actual = calculateVotesToAdd(delegationGraph, 2, 3)
+    const actual = calculateVotesToAdd(
+      delegationGraph,
+      "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+      3
+    );
 
     const expected = secondUserVotesForOptionThree
 

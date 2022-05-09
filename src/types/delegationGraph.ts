@@ -1,5 +1,6 @@
 export interface Governor {
-  id: number,
+  id: string,
+  name: string,
   delegates: Array<Governor['id']>,
   followers: Array<Governor['id']>,
 }

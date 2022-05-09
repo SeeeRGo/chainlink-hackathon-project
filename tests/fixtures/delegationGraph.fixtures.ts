@@ -1,56 +1,83 @@
 import { DelegationGraph } from "../../src/types/delegationGraph";
 
 export const delegationGraph: DelegationGraph = {
-  1: {
-    id: 1,
-    followers: [2, 3],
+  "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051": {
+    id: "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
+    name: "Spider-Man",
+    followers: [
+      "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+      "0x90CaD87e1268Fedff6169507ed628C3b243C14f4",
+    ],
     delegates: [],
   },
-  2: {
-    id: 2,
+  "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1": {
+    id: "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+    name: "Flash",
     followers: [],
-    delegates: [1, 3, 4],
+    delegates: [
+      "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
+      "0x90CaD87e1268Fedff6169507ed628C3b243C14f4",
+      "0x48FA28c7cb2BE9e03ff65491f405907618B73508",
+    ],
   },
-  3: {
-    id: 3,
-    followers: [2, 4],
-    delegates: [1],
+  "0x90CaD87e1268Fedff6169507ed628C3b243C14f4": {
+    id: "0x90CaD87e1268Fedff6169507ed628C3b243C14f4",
+    name: "Black Widow",
+    followers: [
+      "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+      "0x48FA28c7cb2BE9e03ff65491f405907618B73508",
+    ],
+    delegates: ["0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051"],
   },
-  4: {
-    id: 4,
-    followers: [2],
-    delegates: [3],
+  "0x48FA28c7cb2BE9e03ff65491f405907618B73508": {
+    id: "0x48FA28c7cb2BE9e03ff65491f405907618B73508",
+    name: "Captain Marvel",
+    followers: ["0x837D25A0a94Fb6Bf211c945F07A5736640b490D1"],
+    delegates: ["0x90CaD87e1268Fedff6169507ed628C3b243C14f4"],
   },
 };
 
 export const delegationGraphAfterAddingDelegate: DelegationGraph = {
   ...delegationGraph,
-  1: {
-    id: 1,
-    followers: [2, 3],
-    delegates: [4]
+  "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051": {
+    id: "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
+    name: "Spider-Man",
+    followers: [
+      "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+      "0x90CaD87e1268Fedff6169507ed628C3b243C14f4",
+    ],
+    delegates: ["0x48FA28c7cb2BE9e03ff65491f405907618B73508"],
   },
-  4: {
-    id: 4,
-    delegates: [3],
-    followers: [2, 1]
-  }
+  "0x48FA28c7cb2BE9e03ff65491f405907618B73508": {
+    id: "0x48FA28c7cb2BE9e03ff65491f405907618B73508",
+    name: "Captain Marvel",
+    delegates: ["0x90CaD87e1268Fedff6169507ed628C3b243C14f4"],
+    followers: [
+      "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+      "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
+    ],
+  },
 };
 
 export const delegationGraphAfterAddingFollower = delegationGraphAfterAddingDelegate;
 
 export const delegationGraphAfterRemovingDelegate: DelegationGraph = {
   ...delegationGraph,
-  2: {
-    id: 2,
+  "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1": {
+    id: "0x837D25A0a94Fb6Bf211c945F07A5736640b490D1",
+    name: "Flash",
     followers: [],
-    delegates: [1, 4]
+    delegates: [
+      "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
+      "0x48FA28c7cb2BE9e03ff65491f405907618B73508",
+    ],
   },
-  3: {
-    id: 3,
-    delegates: [1],
-    followers: [4]
-  }
+  "0x90CaD87e1268Fedff6169507ed628C3b243C14f4": {
+    id: "0x90CaD87e1268Fedff6169507ed628C3b243C14f4",
+    name: "Black Widow",
+    delegates: ["0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051"],
+    followers: ["0x48FA28c7cb2BE9e03ff65491f405907618B73508"],
+  },
 };
 
 export const delegationGraphAfterRemovingFollower = delegationGraphAfterRemovingDelegate;
