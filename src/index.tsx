@@ -6,6 +6,7 @@ import { VotingBooth } from "./components/VotingBooth";
 import { delegationGraph as initialDelegationGraph } from "../tests/fixtures/delegationGraph.fixtures";
 import { toggleDelegate } from "./utils/toggleDelegate";
 import { Results } from "./components/Results";
+import { initialState } from "../tests/fixtures/votingState.fixtures";
 
 export const App = () => {
   const [delegationGraph, setDelegationGraph] = useState(initialDelegationGraph);
@@ -20,12 +21,22 @@ export const App = () => {
             <DelegationDashboard
               users={delegationGraph}
               onToggleDelegate={(userId, delegateId) => {
-                setDelegationGraph(toggleDelegate(delegationGraph, userId, delegateId));
+                setDelegationGraph(
+                  toggleDelegate(delegationGraph, userId, delegateId)
+                );
               }}
             />
           }
         />
-        <Route path="/results" element={<Results />} />
+        <Route
+          path="/results"
+          element={
+            <Results
+              delegationGraph={delegationGraph}
+              votingState={initialState}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

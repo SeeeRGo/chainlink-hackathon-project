@@ -1,11 +1,19 @@
+import clone from 'just-clone';
 import React, { useEffect, useState } from 'react';
 import { useContract } from '../hooks';
+import { DelegationGraph } from '../types/delegationGraph';
+import { VotingState } from '../types/votingState';
+import { addVotes } from '../utils/addVotes';
+import { calculateVotesToAdd } from '../utils/calculateVotesToAdd';
 
-export const Results = () => {
+interface Props {
+  delegationGraph: DelegationGraph;
+  votingState: VotingState;
+}
+export const Results = ({ delegationGraph, votingState }: Props) => {
   const contract = useContract();
   const [proposals, setProposals] = useState([]);
-  const [results, setResults] = useState('results are unknown');
-  // delegationGraph
+  const [calculatedState, setCalculatedState] = useState(votingState);
 
   useEffect(() => {
     async function getOptions() {
@@ -18,20 +26,43 @@ export const Results = () => {
 
   useEffect(() => {
     async function getResults() {
-      let res = ''
+      let newState = clone(votingState);
       for (let i = 1; i < proposals.length; i++) {
-        const [proposal, supporters] = await contract["proposalSupporters"](i);
-        res += `Proposal ${proposal} is supported By ${supporters.join(' --- ')}`
+        const [_, supporters] = await contract["proposalSupporters"](i);
+        for (let j = 0; j < supporters.length; j++) {
+          const fromId = supporters[j];
+          const optionId = i
+          const voteEvent = calculateVotesToAdd(
+            delegationGraph,
+            fromId,
+            optionId
+          );
+          
+          newState = addVotes(newState, voteEvent);
+        }
       }
-      setResults(res);
+      setCalculatedState(newState);
     }
 
     getResults();
-  }, [proposals]);
+  }, [proposals]);  
 
   return (
     <div>
-      <p>{results}</p>
+      {proposals.slice(1).map((proposal, index) => {
+        const amounts = calculatedState[index + 1]?.amounts
+        if (amounts) {
+          const calculatedAmount = Object
+          .values(amounts)
+          .reduce((total, currentAmount) => total + currentAmount, 0)
+          return (
+            <p>{`Proposal ${proposal} is supported By ${calculatedAmount} total VotingPower`}</p>
+          );
+        }
+        return (
+          <p>{`Proposal ${proposal} is supported By UNDETERMINED total VotingPower`}</p>
+        );
+      })}
     </div>
   );
 }
