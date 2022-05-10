@@ -5,6 +5,7 @@ import { Navigation } from "./components/Navigation";
 import { VotingBooth } from "./components/VotingBooth";
 import { delegationGraph as initialDelegationGraph } from "../tests/fixtures/delegationGraph.fixtures";
 import { toggleDelegate } from "./utils/toggleDelegate";
+import { Results } from "./components/Results";
 
 export const App = () => {
   const [delegationGraph, setDelegationGraph] = useState(initialDelegationGraph);
@@ -24,6 +25,7 @@ export const App = () => {
             />
           }
         />
+        <Route path="/results" element={<Results />} />
       </Routes>
     </BrowserRouter>
   );

@@ -99,4 +99,9 @@ contract Ballot {
     function getProposals() public view returns (Proposal[] memory) {
       return proposals;
     }
+
+    function getVote() public view returns (uint result) {
+      return votes[msg.sender];
+    }
+
 }

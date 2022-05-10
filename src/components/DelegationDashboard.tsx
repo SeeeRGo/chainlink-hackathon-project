@@ -1,8 +1,7 @@
 import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
-import { useWeb3React } from "@web3-react/core";
-import React, { useEffect } from "react";
+import React from "react";
+import { useAccount } from "../hooks";
 import { DelegationGraph, Governor } from "../types/delegationGraph";
-import { Injected } from "./VotingBooth";
 
 interface Props {
   users: DelegationGraph;
@@ -16,11 +15,7 @@ export const DelegationDashboard = ({
   users,
   onToggleDelegate,
 }: Props) => {
-  const { activate, account } = useWeb3React();
-
-  useEffect(() => {
-    activate(Injected);
-  }, []);
+  const account = useAccount();
 
   const delegates: Governor['delegates'] = account ? users[account]?.delegates ?? [] : [];
   const followers: Governor['followers'] = account ? users[account]?.followers ?? [] : [];
