@@ -50,7 +50,7 @@ export const VotingBooth = () => {
       <Button
         onClick={async () => {
           if(selected !== null) {
-            await contract["vote"](selected);
+            await contract["vote"](selected, { gasLimit: 300000 });
           }
         }
         }

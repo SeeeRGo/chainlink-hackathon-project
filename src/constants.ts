@@ -1,6 +1,6 @@
 import { InjectedConnector } from "@web3-react/injected-connector";
 
-export const contractAddress = "0x3a563f2f73cA8cBf532c163C125f2c61B5f9E2C7";
+export const contractAddress = "0x363397F1942A51a53E9f72c90C3953A46ea12BF9";
 
 export const participatingAddresses = [
   "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
