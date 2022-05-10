@@ -40,3 +40,8 @@ interface StateData {
   data: VotingState;
 }
 export interface State extends StateBehavior, StateData {}
+
+export interface VoteEvent {
+  optionId: OptionId;
+  votes: Vote[];
+}

@@ -12206,6 +12206,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"just-clone@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "just-clone@npm:5.0.1"
+  checksum: 2b45d69c0414247331366c5b036e9d749f6ad5782a31e7e47f753a26272f78eaa3291c8e5c1368ef28f1cae17dc74d9b5ab05719bce6f30b028c60f63c60f808
+  languageName: node
+  linkType: hard
+
 "just-debounce-it@npm:^1.1.0":
   version: 1.5.0
   resolution: "just-debounce-it@npm:1.5.0"
@@ -19381,6 +19388,7 @@ __metadata:
     ipfs: ^0.62.3
     jest: 27.5.1
     json-loader: ^0.5.7
+    just-clone: ^5.0.1
     just-range: ^4.0.1
     mini-css-extract-plugin: ^2.2.0
     minimist: ^1.2.6

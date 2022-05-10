@@ -29,7 +29,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -48,7 +49,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -67,7 +69,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -80,7 +83,8 @@
       "name": "vote",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -111,7 +115,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -131,7 +136,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.13+commit.abaa5c0e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string[]\",\"name\":\"proposalNames\",\"type\":\"string[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"alreadyVoted\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"voter\",\"type\":\"address\"}],\"name\":\"checkExistingVoter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"existingVoter\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getProposals\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"internalType\":\"struct Ballot.Proposal[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposal\",\"type\":\"uint256\"}],\"name\":\"proposalSupporters\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"internalType\":\"struct Ballot.Proposal\",\"name\":\"\",\"type\":\"tuple\"},{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposal\",\"type\":\"uint256\"}],\"name\":\"vote\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"votes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"proposalSupporters(uint256)\":{\"details\":\"Computes the winning proposal taking all previous votes into account.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"constructor\":{\"notice\":\"Create a new ballot to choose one of `proposalNames`.\"},\"vote(uint256)\":{\"notice\":\"Give your vote (including votes delegated to you) to proposal `proposals[proposal].name`.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Ballot.sol\":\"Ballot\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Ballot.sol\":{\"keccak256\":\"0xe01c357cb536f0f5daed2272a77783047740c1e3fad3e5fdb9aea115df990bf9\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://007cd41e67760768d7749f7a926d1fe208d8cc4122934af9909aa832aa306803\",\"dweb:/ipfs/QmSeJKs9ZBUuH6fvXQZuRUdDJFtNFGAYzRR7UdF5Q839hG\"]}},\"version\":1}",
@@ -12197,12 +12203,13 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0xcA71c1b7063f2bD7dC17505197fBF252E8380Be9",
-      "transactionHash": "0x320292cfbe6b93d7065e964b10c74ae7caa3c751bce2897f356dbed12cf68c2e"
+      "address": "0x580Fe7c429a26386f56722d1fD22FcC043b00A6D",
+      "transactionHash": "0x385816bef20aa49afc9441da3b62b790295f54f3300ea99f475d41f19c30796e"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-05-09T13:34:39.119Z",
+  "updatedAt": "2022-05-10T07:15:30.390Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {
