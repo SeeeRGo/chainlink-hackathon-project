@@ -2,3 +2,4 @@ node_modules
 .yarn
 .env
 truffle-config.js
+orbitdb

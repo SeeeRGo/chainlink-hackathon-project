@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DelegationDashboard } from "./components/DelegationDashboard";
 import { Navigation } from "./components/Navigation";
 import { VotingBooth } from "./components/VotingBooth";
-import { delegationGraph as initialDelegationGraph } from "../tests/fixtures/delegationGraph.fixtures";
 import { toggleDelegate } from "./utils/toggleDelegate";
 import { Results } from "./components/Results";
 import { initialState } from "../tests/fixtures/votingState.fixtures";
+import { DBContext } from "./contexts/DBContext";
 
 export const App = () => {
-  const [delegationGraph, setDelegationGraph] = useState(initialDelegationGraph);
+  const { graph, setData } = useContext(DBContext);
+  useEffect(() => {
+    if (graph) {
+      console.log("data", graph);
+    }
+  }, [graph]);
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -19,11 +25,12 @@ export const App = () => {
           path="/delegate"
           element={
             <DelegationDashboard
-              users={delegationGraph}
+              users={graph}
               onToggleDelegate={(userId, delegateId) => {
-                setDelegationGraph(
-                  toggleDelegate(delegationGraph, userId, delegateId)
-                );
+                const newData = toggleDelegate(graph, userId, delegateId);
+                console.log("newData in app", newData);
+                
+                setData(newData);
               }}
             />
           }
@@ -31,10 +38,7 @@ export const App = () => {
         <Route
           path="/results"
           element={
-            <Results
-              delegationGraph={delegationGraph}
-              votingState={initialState}
-            />
+            <Results delegationGraph={graph} votingState={initialState} />
           }
         />
       </Routes>

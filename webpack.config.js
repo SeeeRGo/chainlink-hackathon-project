@@ -62,16 +62,23 @@ module.exports = {
         NODE_ENV: JSON.stringify("development"),
       },
     }),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+    new webpack.ProvidePlugin({
+      Buffer: ["buffer", "Buffer"],
+    }),
     new Dotenv(),
   ],
   resolve: {
     fallback: {
       crypto: false,
       assert: false,
-      stream: false,
+      stream: require.resolve("stream-browserify"),
       os: require.resolve("os-browserify/browser"),
       https: require.resolve("https-browserify"),
       http: require.resolve("stream-http"),
+      path: require.resolve("path-browserify"),
     },
   },
 };
