@@ -1,20 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DelegationDashboard } from "./components/DelegationDashboard";
 import { Navigation } from "./components/Navigation";
 import { VotingBooth } from "./components/VotingBooth";
-import { toggleDelegate } from "./utils/toggleDelegate";
 import { Results } from "./components/Results";
 import { initialState } from "../tests/fixtures/votingState.fixtures";
-import { DBContext } from "./contexts/DBContext";
+import { DelegationGraph } from "./types/delegationGraph";
+import { getDelegationGraph, updateDelegationGraph } from "./api";
 
 export const App = () => {
-  const { graph, setData } = useContext(DBContext);
+  const [graph, setGraph] = useState<DelegationGraph>({});
+  const getData = useCallback(async () => {
+    getDelegationGraph().then(data => setGraph(data))
+  }, [])
   useEffect(() => {
-    if (graph) {
-      console.log("data", graph);
-    }
-  }, [graph]);
+    getData();
+  }, []);
   
   return (
     <BrowserRouter>
@@ -26,11 +27,9 @@ export const App = () => {
           element={
             <DelegationDashboard
               users={graph}
-              onToggleDelegate={(userId, delegateId) => {
-                const newData = toggleDelegate(graph, userId, delegateId);
-                console.log("newData in app", newData);
-                
-                setData(newData);
+              onToggleDelegate={async (userId, delegateId) => {
+                await updateDelegationGraph(userId, delegateId);
+                await getData();
               }}
             />
           }

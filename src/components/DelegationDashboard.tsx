@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
-  const account = useAccount();
+  const account = useAccount();  
 
   const delegates: Governor["delegates"] = account
     ? users[account]?.delegates ?? []
@@ -29,6 +29,7 @@ export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
             .filter((governor) => governor.id !== account)
             .map((governor) => (
               <FormControlLabel
+                key={governor.id}
                 control={
                   <Checkbox
                     value={governor.id}

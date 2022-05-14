@@ -1,10 +1,21 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { apiResponse, GET_DATA } from "./constants";
+import axios, { AxiosResponse } from "axios";
+import { DelegationGraph, Governor } from "../types/delegationGraph";
+import { apiUrl } from "./constants";
 
-export const getSampleData = createAsyncThunk(GET_DATA, async () => {
-  // pretending to fetch data asyncronously
-  const result = await new Promise<string[]>((resolve) => {
-    resolve(apiResponse)
-  })
-  return result;
-});
+export const getDelegationGraph = async <T>() => {
+  const { data } = await axios.get<T, AxiosResponse<DelegationGraph>>(apiUrl);
+  return data;
+};
+
+export const updateDelegationGraph = async (
+  userId: Governor["id"],
+  delegateId: Governor["id"]
+) => {
+  await axios.post(
+    apiUrl,
+    {
+      userId,
+      delegateId,
+    }
+  );
+};
