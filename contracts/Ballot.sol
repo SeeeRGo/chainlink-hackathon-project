@@ -12,6 +12,9 @@ contract Ballot {
         string name;   // short name (up to 32 bytes)
     }
 
+    event VoteLog (address indexed from, string proposal);
+
+
     // A dynamically-sized array of `Proposal` structs.
     Proposal[] proposals;
 
@@ -60,6 +63,9 @@ contract Ballot {
       // this will throw automatically and revert all
       // changes.
       require(proposal <= proposals.length - 1);
+            
+      emit VoteLog(msg.sender, proposals[proposal].name);
+
 
       bool existingVoter = checkExistingVoter(msg.sender);
       uint previousVote = votes[msg.sender];

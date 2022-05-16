@@ -1,6 +1,5 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import bodyParser from 'body-parser';
 
 import createDb from "./db";
 import { toggleDelegate } from "../src/utils/toggleDelegate";

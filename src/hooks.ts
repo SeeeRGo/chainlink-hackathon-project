@@ -16,16 +16,16 @@ export const useContract = () => {
   const contract = new Contract(contractAddress, abi.abi, signer);
 
   return contract;
-}
+};
 
 export const useAccount = () => {
-    const { activate, account } = useWeb3React();
+  const { activate, account } = useWeb3React();
 
-    useEffect(() => {
-      if(!account) {
-        activate(Injected);
-      }
-    }, [activate, account]);
+  useEffect(() => {
+    if (!account) {
+      activate(Injected);
+    }
+  }, [activate, account]);
 
-    return account;
-}
+  return account;
+};

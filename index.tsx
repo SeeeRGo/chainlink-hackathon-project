@@ -5,7 +5,6 @@ import { App } from "./src";
 import { store } from "./src/store";
 import { Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
-import { DBProvider } from "./src/contexts/DBContext";
 
 const getLibrary = (
   provider:
@@ -23,10 +22,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Web3ReactProvider getLibrary={getLibrary}>
-    <DBProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </DBProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Web3ReactProvider>
 );

@@ -452,6 +452,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chainlink/contracts@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@chainlink/contracts@npm:0.4.1"
+  checksum: 5d5e35cb47ffaad94aff236762b17bfb5e9030f1b0d93edac92f57a16d34a7b0cb7565a8692fe14d1e78466aeac24dcc344e9b5f674e28f5cda464c8f2fe7202
+  languageName: node
+  linkType: hard
+
 "@chainsafe/libp2p-noise@npm:^5.0.0, @chainsafe/libp2p-noise@npm:^5.0.1":
   version: 5.0.3
   resolution: "@chainsafe/libp2p-noise@npm:5.0.3"
@@ -19376,6 +19383,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "voting-with-partial-delegation@workspace:."
   dependencies:
+    "@chainlink/contracts": ^0.4.1
     "@emotion/react": ^11.9.0
     "@emotion/styled": ^11.8.1
     "@material-ui/core": ^4.12.3

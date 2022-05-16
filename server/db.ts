@@ -1,6 +1,5 @@
 import * as IPFS from "ipfs";
 import OrbitDB from "orbit-db";
-import { delegationGraph } from "../tests/fixtures/delegationGraph.fixtures";
 import { DBModel } from "./types";
 
 async function createDb() {
