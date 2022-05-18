@@ -17,7 +17,7 @@ export const Navigation = () => {
         <Button
           key={page[0] ?? `${i}`}
           onClick={() => {
-            if(page[1]) {
+
               navigate(page[1]);
             }
           }}
