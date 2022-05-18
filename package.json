@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --port 3000",
+    "build:dev": "NODE_ENV=development webpack",
     "build": "NODE_ENV=development webpack",
     "test": "jest"
   },
