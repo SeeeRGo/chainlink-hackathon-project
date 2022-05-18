@@ -15,6 +15,10 @@
     },
     "verbose": true
   },
+  "engines": {
+    "node": ">= 16.13.0",
+    "npm": ">= 8.5.0"
+  },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@latest",
     "@types/jest": "^27.5.0",
