@@ -19,3 +19,16 @@ export const updateDelegationGraph = async (
     }
   );
 };
+
+export const registerVoter = async (
+  userId: Governor["id"],
+  name: Governor['name'],
+) => {
+  await axios.post(
+    `${apiUrl}/register`,
+    {
+      userId,
+      name,
+    }
+  );
+};

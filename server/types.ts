@@ -5,6 +5,11 @@ export interface DelegateUpdate {
   delegateId: Governor["id"];
 }
 
+export interface RegisterVoter {
+  userId: Governor["id"];
+  name: Governor["name"];
+}
+
 export interface DBModel {
   _id: string;
   data: DelegationGraph;

@@ -1,32 +1,37 @@
 import { Grid, Typography } from "@material-ui/core";
 import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAccount } from "../hooks";
 import { DelegationGraph, Governor } from "../types/delegationGraph";
 
 interface Props {
-  users: DelegationGraph;
+  graph: DelegationGraph;
+  getData: () => Promise<void>;
   onToggleDelegate: (
     userId: Governor["id"],
     delegateId: Governor["id"]
   ) => void;
 }
 
-export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
+export const DelegationDashboard = ({ graph, getData, onToggleDelegate }: Props) => {
   const account = useAccount();
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   const delegates: Governor["delegates"] = account
-    ? users[account]?.delegates ?? []
+    ? graph[account]?.delegates ?? []
     : [];
   const followers: Governor["followers"] = account
-    ? users[account]?.followers ?? []
+    ? graph[account]?.followers ?? []
     : [];
   return (
     <Grid container>
       <Grid item xs={6}>
         <Typography variant="h4">Your Delegates</Typography>
         <FormGroup>
-          {Object.values(users)
+          {Object.values(graph)
             .filter((governor) => governor.id !== account)
             .map((governor) => (
               <FormControlLabel
@@ -38,6 +43,7 @@ export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
                     onChange={() => {
                       if (account) {
                         onToggleDelegate(account, governor.id);
+                        getData();
                       }
                     }}
                   />
@@ -61,7 +67,7 @@ export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
           <Typography
             style={{ height: "42px", display: "flex", alignItems: "center" }}
           >
-            {users[follower]?.name ?? follower}
+            {graph[follower]?.name ?? follower}
           </Typography>
         ))}
       </Grid>

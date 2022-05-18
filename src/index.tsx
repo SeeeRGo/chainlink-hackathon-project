@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DelegationDashboard } from "./components/DelegationDashboard";
 import { Navigation } from "./components/Navigation";
@@ -22,23 +22,20 @@ export const App = () => {
   const getData = useCallback(async () => {
     getDelegationGraph().then((data) => setGraph(data));
   }, []);
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="vote" element={<VotingBooth />} />
+          <Route path="vote" element={<VotingBooth getData={getData} />} />
           <Route
             path="delegate"
             element={
               <DelegationDashboard
-                users={graph}
+                graph={graph}
+                getData={getData}
                 onToggleDelegate={async (userId, delegateId) => {
                   await updateDelegationGraph(userId, delegateId);
-                  await getData();
                 }}
               />
             }
