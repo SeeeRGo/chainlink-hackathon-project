@@ -1,7 +1,7 @@
 import { Box } from '@material-ui/core';
 import { Button } from '@mui/material';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const pages = [
   ["Voting Booth", "/vote"],
@@ -10,6 +10,7 @@ const pages = [
 ];
 export const Navigation = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   return (
     <Box sx={{ flexGrow: 1, display: { md: "flex" } }}>
       {pages.map((page, i) => (
@@ -20,6 +21,7 @@ export const Navigation = () => {
               navigate(page[1]);
             }
           }}
+          style={page[1] && page[1] === pathname ? { color: 'black' } : {}}
           sx={{ my: 2, display: "block" }}
         >
           {page[0]}

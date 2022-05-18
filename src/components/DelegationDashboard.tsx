@@ -1,3 +1,4 @@
+import { Grid, Typography } from "@material-ui/core";
 import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import React from "react";
 import { useAccount } from "../hooks";
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
-  const account = useAccount();  
+  const account = useAccount();
 
   const delegates: Governor["delegates"] = account
     ? users[account]?.delegates ?? []
@@ -21,9 +22,9 @@ export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
     ? users[account]?.followers ?? []
     : [];
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <div>
-        <h3>Your Delegates</h3>
+    <Grid container>
+      <Grid item xs={6}>
+        <Typography variant="h4">Your Delegates</Typography>
         <FormGroup>
           {Object.values(users)
             .filter((governor) => governor.id !== account)
@@ -46,16 +47,24 @@ export const DelegationDashboard = ({ users, onToggleDelegate }: Props) => {
             ))}
         </FormGroup>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <Button>Save</Button>
-          <Button>Cancel</Button>
+          <Button>
+            <Typography>Save</Typography>
+          </Button>
+          <Button>
+            <Typography>Cancel</Typography>
+          </Button>
         </div>
-      </div>
-      <div>
-        <h3>Your Followers</h3>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography variant="h4">Your Followers</Typography>
         {followers.map((follower) => (
-          <p>{users[follower]?.name ?? follower}</p>
+          <Typography
+            style={{ height: "42px", display: "flex", alignItems: "center" }}
+          >
+            {users[follower]?.name ?? follower}
+          </Typography>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
