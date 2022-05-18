@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity >=0.8.0;
 
-contract Ballot {
+import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
+
+contract BallotWithKeepers is KeeperCompatibleInterface {
   struct Vote {
         address voter;
         uint vote;   // index of the voted proposal
@@ -14,7 +16,7 @@ contract Ballot {
 
     event VoteLog (address indexed from, string proposal);
 
-
+    bool public newVotesSinceLastBlock;
     // A dynamically-sized array of `Proposal` structs.
     Proposal[] proposals;
 
@@ -34,6 +36,7 @@ contract Ballot {
       proposals.push(Proposal({
             name: 'EMPTY PROPOSAL'
       }));
+      newVotesSinceLastBlock = false;
       for (uint i = 0; i < proposalNames.length; i++) {
           proposals.push(Proposal({
             name: proposalNames[i]
@@ -66,9 +69,10 @@ contract Ballot {
             
       emit VoteLog(msg.sender, proposals[proposal].name);
 
+      newVotesSinceLastBlock = true;
+
 
       bool existingVoter = checkExistingVoter(msg.sender);
-      uint previousVote = votes[msg.sender];
       // if person already voted 
       if (!existingVoter) {
         alreadyVoted.push(msg.sender);
@@ -79,24 +83,11 @@ contract Ballot {
 
       // add address to the list of voters for option voting state
       votersPerOption[proposal].push(msg.sender);
-
-      // remove address from previously voted list if voter alrady voted before
-      if (existingVoter) {
-        remainingVotersTemp = new address[](0);
-        for (uint256 i = 0; i < votersPerOption[previousVote].length; i++) {
-          address currentVoter = votersPerOption[previousVote][i];
-          if (currentVoter != msg.sender) {
-            remainingVotersTemp.push(currentVoter);
-          }
-        }
-        votersPerOption[previousVote] = remainingVotersTemp;
-        remainingVotersTemp = new address[](0);
-      }
     }
 
     /// Returns addresses for supporters for a given proposal
     function proposalSupporters(uint proposal) public view
-            returns (Proposal memory, address[] memory)
+      returns (Proposal memory, address[] memory)
     {
       return (proposals[proposal], votersPerOption[proposal]);
     }
@@ -107,6 +98,31 @@ contract Ballot {
 
     function getVote() public view returns (uint result) {
       return votes[msg.sender];
+    }
+
+    function checkUpkeep(bytes calldata) external view override returns (bool upkeepNeeded, bytes memory performData) {
+        upkeepNeeded = newVotesSinceLastBlock;
+        return (upkeepNeeded, "");
+    }
+
+    function performUpkeep(bytes calldata) external override {
+      remainingVotersTemp = new address[](0);
+
+      for (uint256 i = 0; i < proposals.length; i++) {
+        for (uint256 j = 0; j < votersPerOption[i].length; j++) {
+          address currentVoter = votersPerOption[i][j];
+          // check for current valid vote
+          if(votes[currentVoter] == i) {
+            remainingVotersTemp.push(currentVoter);
+          }
+        }
+        // filter out outdated votes
+        votersPerOption[i] = remainingVotersTemp;
+
+        remainingVotersTemp = new address[](0);
+      }
+
+      newVotesSinceLastBlock = false;
     }
 
 }
