@@ -10,7 +10,7 @@ dotenv.config();
 
 const app: Express = express();
 app.use(express.json()) // To parse the incoming requests with JSON payloads
-const port = process.env['PORT'];
+const port = process.env['PORT'] || 9000;
 
 createDb().then(async db => {
   await db.put({ _id: "delegationGraph", data: {} });
@@ -24,6 +24,7 @@ createDb().then(async db => {
 
   app.post("/", async <P, T>(req: Request<P, T, DelegateUpdate>, res: Response) => {    
     const { delegateId, userId } = req.body;
+    
     const oldDelegationGraph = db.get("delegationGraph")[0]?.data || {};
 
     if(!oldDelegationGraph) {

@@ -19,7 +19,7 @@ export const DelegationDashboard = ({ graph, getData, onToggleDelegate }: Props)
   useEffect(() => {
     getData();
   }, []);
-
+  
   const delegates: Governor["delegates"] = account
     ? graph[account]?.delegates ?? []
     : [];
@@ -40,9 +40,10 @@ export const DelegationDashboard = ({ graph, getData, onToggleDelegate }: Props)
                   <Checkbox
                     value={governor.id}
                     checked={delegates.includes(governor.id)}
-                    onChange={() => {
+                    onChange={async () => {
                       if (account) {
-                        onToggleDelegate(account, governor.id);
+                        await onToggleDelegate(account, governor.id);
+
                         getData();
                       }
                     }}
