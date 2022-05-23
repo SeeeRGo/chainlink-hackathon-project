@@ -10,7 +10,13 @@ export const calculateVotesToAdd = (
   if (!voter) {
     return {
       optionId,
-      votes: [],
+      votes: [
+        {
+          type: "OWN",
+          amount: 1,
+          fromId,
+        },
+      ],
     };
   }
   const followerVotes = voter.followers.map(

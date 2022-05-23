@@ -3,7 +3,7 @@ import { addVotes } from "../src/utils/addVotes";
 import { calculateVotesToAdd } from "../src/utils/calculateVotesToAdd";
 import { delegationGraph } from "./fixtures/delegationGraph.fixtures";
 import {
-  emptyVoteEventForOptionThree,
+  firstUserOwnVoteEventForOptionThree,
   firstUserVotesForOptionTwo,
   fourthUserVotesForOptionThree,
   secondUserVotesForOptionThree,
@@ -41,10 +41,20 @@ describe("Vote info calculated from dependency graph", () => {
 
     expect(actual).toEqual(expected);
   });
-  test("should return empty votes array for non-existing id", () => {
-    const actual = calculateVotesToAdd(delegationGraph, "0x", 3);
+  // test("should return empty votes array for non-existing id", () => {
+  //   const actual = calculateVotesToAdd(delegationGraph, "0x", 3);
 
-    const expected = emptyVoteEventForOptionThree;
+  //   const expected = emptyVoteEventForOptionThree;
+
+  //   expect(actual).toEqual(expected);
+  // });
+  test("should return own vote for empty delegation graph", () => {
+    const actual = calculateVotesToAdd(
+      {},
+      "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
+      3
+    );
+    const expected = firstUserOwnVoteEventForOptionThree;
 
     expect(actual).toEqual(expected);
   });

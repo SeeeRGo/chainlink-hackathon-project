@@ -18,6 +18,16 @@ export const emptyVoteEventForOptionThree: VoteEvent = {
   optionId: 3,
   votes: [],
 }
+export const firstUserOwnVoteEventForOptionThree: VoteEvent = {
+  optionId: 3,
+  votes: [
+    {
+      type: "OWN",
+      amount: 1,
+      fromId: "0x26784F64FeB6b1E0a7B3229D435214bfCe2B2051",
+    },
+  ],
+};
 
 // TODO test votes array creation from just voterId according to initial delegationGraph
 export const firstUserVotesForOptionTwo: VoteEvent = {
