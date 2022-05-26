@@ -9,6 +9,12 @@ There are currently two parts: Smart Contract keeping registry of users who vote
   - User's own vote always takes priority and overrides any votes cast in his stead by any delegates
   - Delegated power is calculated on per follower basis and is equal to ***1 / (totalDelegatesVotedInPlaceOfParticlularFollower)***
   - Total voting power of the user is **ALWAYS EQUAL TO 1** regardles of number of delegates voted
+
+## Diagram of logic behind casting a vote
+
+![Casting vote](BuisinessLogic.drawio)
+
+## Diagram of logic behind retracting a vote (casting a vote for "CLEAR VOTE" option)
 # Project todo list (from the top of my head in no particular order)
 
  - Figure out authentication and account verification
@@ -20,4 +26,4 @@ There are currently two parts: Smart Contract keeping registry of users who vote
  - Resource allocation based on currently winning option
  - Timelock before re-allocationg resources, to prevent too high frequency of reso (like a week or two)
  - Recommendati on engine for like-minded people to add as your delegates
- - Experiments with voting power to 100 to give users ability to propotionally allocate their voting pover
+ - Experiments with voting power to 100 to give users ability to propotionally allocate their voting power
