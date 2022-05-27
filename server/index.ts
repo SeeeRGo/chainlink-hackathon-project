@@ -24,7 +24,8 @@ createDb().then(async db => {
 
   app.post("/", async <P, T>(req: Request<P, T, DelegateUpdate>, res: Response) => {    
     const { delegateId, userId } = req.body;
-    
+    console.log('choosing delegate', delegateId, userId);
+        
     const oldDelegationGraph = db.get("delegationGraph")[0]?.data || {};
 
     if(!oldDelegationGraph) {

@@ -54,7 +54,7 @@ export const VotingBooth = ({ getData }: Props) => {
       <Button
         onClick={async () => {
           if (account) {
-            await contract["vote"](selected, { gasLimit: 300000 });
+            await contract["vote"](selected, { gasLimit: 600000 });
             await registerVoter(account, account);
             await getData();
           }

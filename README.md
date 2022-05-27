@@ -14,6 +14,15 @@ There are currently two parts: Smart Contract keeping registry of users who vote
 
 ![Casting vote](BuisinessLogicSVG.drawio.svg)
 
+## Installation steps
+
+1. Clone repo
+2. npm install
+3. npm run start (to start frontend on  localhost:3000)
+4. cd server
+5. npm install
+6. npm run start (to start backend on localhost:9000)
+
 ## Diagram of logic behind retracting a vote (casting a vote for "CLEAR VOTE" option)
 
 __TBD__

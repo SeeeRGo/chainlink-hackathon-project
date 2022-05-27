@@ -29,6 +29,9 @@ export const Results = ({ delegationGraph, votingState }: Props) => {
       let newState = clone(votingState);
       for (let i = 1; i < proposals.length; i++) {
         const [_, supporters] = await contract["proposalSupporters"](i);
+        console.log('i', i);
+        console.log('supporters', supporters);
+        
         for (let j = 0; j < supporters.length; j++) {
           const fromId = supporters[j];
           const optionId = i

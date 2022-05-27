@@ -43,8 +43,7 @@ export const DelegationDashboard = ({ graph, getData, onToggleDelegate }: Props)
                     onChange={async () => {
                       if (account) {
                         await onToggleDelegate(account, governor.id);
-
-                        getData();
+                        await getData();
                       }
                     }}
                   />
