@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { App } from "./src";
 import { store } from "./src/store";
@@ -16,14 +16,12 @@ const getLibrary = (
   return library;
 };
 
-const root = ReactDOM.createRoot(
-  document.getElementById("app-root") || document.body
-);
-
-root.render(
+ReactDOM.render(
   <Web3ReactProvider getLibrary={getLibrary}>
     <Provider store={store}>
       <App />
     </Provider>
-  </Web3ReactProvider>
+  </Web3ReactProvider>,
+  document.getElementById("app-root") || document.body
 );
+

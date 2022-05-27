@@ -12,9 +12,11 @@ There are currently two parts: Smart Contract keeping registry of users who vote
 
 ## Diagram of logic behind casting a vote
 
-![Casting vote](BuisinessLogic.drawio)
+![Casting vote](BuisinessLogicSVG.drawio.svg)
 
 ## Diagram of logic behind retracting a vote (casting a vote for "CLEAR VOTE" option)
+
+__TBD__
 # Project todo list (from the top of my head in no particular order)
 
  - Figure out authentication and account verification
